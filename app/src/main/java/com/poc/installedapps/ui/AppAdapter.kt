@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.poc.installedapps.R
 import com.poc.installedapps.model.App
 import kotlinx.android.synthetic.main.layout_app.view.*
@@ -38,7 +39,7 @@ class AppAdapter(private val actions: AppActions? = null) : RecyclerView.Adapter
 class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(app: App, actions: AppActions?) {
         itemView.tv_appName.text = app.name
-        itemView.iv_appIcon.setImageURI(app.imageUrl)
+        Glide.with(itemView).load(app.imageUrl).into(itemView.iv_appIcon)
         itemView.setOnClickListener {
             actions?.openApp(app.`package`)
         }
